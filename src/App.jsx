@@ -18,17 +18,13 @@ export default function App() {
     // Obtiene películas basadas en la consulta 
     const { movies, isLoading, error } = useFetchMovies(query);
     // Estado de películas vistas 
-    const [watched, setWatched] = useState([]);
+    const [watched, setWatched] = useState(() => {
+        const storedWatched = localStorage.getItem('watched');
+        return storedWatched ? JSON.parse(storedWatched) : [];
+    });
 
     // Estado para la película seleccionada 
     const [selectedId, setSelectedId] = useState(null);
-
-    useEffect(() => {
-        const storedWatched = localStorage.getItem('watched');
-        if (storedWatched) {
-            setWatched(JSON.parse(storedWatched));
-        }
-    }, []);
 
     useEffect(() => {
         localStorage.setItem('watched', JSON.stringify(watched));
