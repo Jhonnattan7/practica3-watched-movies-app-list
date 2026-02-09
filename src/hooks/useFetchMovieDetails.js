@@ -33,13 +33,12 @@ export function useFetchMovieDetails(selectedId) {
          */
         async function fetchMovieDetails(selectedId) {
             try {
-                setIsLoading(true);  // Activa el estado de carga 
-                setError(null);  // Reinicia errores previos 
+                setIsLoading(true);
+                setError(null);
 
-                // Petición a la API de OMDb con la clave de acceso y el ID de la película 
-                const response = await fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&i=${selectedId}`);
+                const response = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&i=${selectedId}`);
 
-                // Verifica si la respuesta HTTP es correcta 
+                if (!response.ok) 
                 if (!response.ok)
                     throw new Error("Error al cargar los detalles de la película");
 

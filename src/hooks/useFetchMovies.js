@@ -34,11 +34,10 @@ export function useFetchMovies(query) {
          */
         async function fetchMovies() {
             try {
-                setIsLoading(true);  // Inicia el estado de carga 
-                setError(null);  // Reinicia errores previos 
+                setIsLoading(true);
+                setError(null);
 
-                // Petición a la API de OMDb con la clave de acceso y la consulta 
-                const response = await fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${query}`); // usa https si te da error
+                const response = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${query}`);
 
                 // Verifica si la respuesta HTTP es correcta 
                 if (!response.ok)
